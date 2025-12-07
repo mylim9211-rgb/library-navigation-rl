@@ -22,15 +22,73 @@ library-navigation-rl/
 
 각 폴더는 다음 구성으로 이루어져 있습니다:
 
-폴더별 공통 코드
+폴더별 코드 설명 
+ 
+★ Library_Simple
 
-env_*.py : Grid 환경 정의
+가장 기본적인 서가 A~C로 구성된 단순 환경.
+충돌 규칙 최소화, 가장 쉬운 난이도.
 
-train_*.py : 학습 코드
+주요 파일 설명
+Library_Simple_env.py : Simple Grid 환경 정의 장애물 없음, 구조 단순 가장 안정적으로 학습이 이루어지는 단계
 
-test_*.py : 평가 코드
+library_shelf_random_start_double.pt : Simple 환경에서 Random Start 포함한 Double DQN 학습 모델 가중치
 
-*_visual.py : 시각화 / 경로 출력
+library_shelf_random_start_curriculum.pt : Curriculum로 넘어가기 직전 Robust 모델
+
+Library_train_random_start.py : Simple 환경에서 Random Start 포함 학습 Curriculum 초기값으로 활용
+
+Library_simple_test_summary.py : Simple 단계 전체 성공률·평균스텝·wall-hit 등 요약
+
+Library_test_random_start.py : Random Start에서 정책 안정성 테스트 Curriculum 환경으로 넘어가기 전 정책의 generalization 검증
+
+Library_test_simple_image.py : Sample Path(훈련 결과)를 PNG 이미지로 시각화
+
+simple_eval_visual.py : Simple 환경의 초기 성능 검증 및 Path 비주얼라이제이션
+
+
+⭐ 2. ★Library_Curriculum
+
+중간 난이도 환경.
+서가 구조는 유지하되 장애물·벤치가 추가되고 Random Start 비율이 조절되는 환경.
+
+주요 파일 설명
+
+env_curriculum.py : Curriculum Grid 환경 정의 Simple 대비 구조 약간 복잡, 장애물/벤치 포함 Random Start 비율을 ↑ 조절하는 Curriculum 전략 반영
+
+library_curriculum_base.pt : Curriculum 단계에서 학습된 Base 모델 가중치
+
+library_simple_robust.pt / library_simple_robust.pt : Simple 단계에서 수렴된 정책을 Curriculum으로 전이할 때 사용되는 Robust 초기 모델
+
+train_curriculum_base.py : Curriculum 환경에서의 기본 학습 스크립트 Random Start 비율 0% → 80%로 증가시키며 Training 진행
+
+train_simple_robust.py : Simple 단계 Robust 모델을 Curriculum 단계로 전이하여 학습하는 스크립트
+
+test_simple_robust_summary.py : Curriculum 환경에서의 평균 성공률/스텝 등을 한 번에 정리하는 모듈
+
+curriculum_eval_visual.py : Curriculum 환경 이동 경로 시각화 보고서용 Path 이미지 생성
+
+test_simple_robust_live.py : 학습된 Curriculum 모델을 실시간으로 1회 실행하여 행동 패턴을 확인하는 파일
+
+⭐ 3. ★Library_Advanced
+
+가장 복잡한 서가 지형(장애물·복도·다중 타겟)에서 학습·평가하는 최종 환경.
+
+주요 파일 설명
+
+env_advanced.py : Advanced Grid 환경 정의 파일 장애물 배치, 서가 구조, 이동 규칙 등을 포함 Simple/Curri 대비 가장 복잡한 지형 로직 포함
+
+library_AG_double_dueling.pt : 최종 학습된 “Double DQN + Dueling Network” 정책 모델 가중치 파일 
+
+Library_env_train.py : Advanced 환경 학습 스크립트 Double DQN + Dueling 구조로 4,000 episode 학습 수행
+
+Library_advanced_eval.py : 대표 Seed 기반 성능 평가 S-start / Random-start 성능 타겟별 성공률(A~G) 출력
+
+Library_advanced_seed_eval.py : 여러 seed(예: 1, 42, 2025) 기반 Random-start 성능 측정 95% CI 계산용 스크립트
+
+Library_test_advanced_summary.py : Advanced Grid 환경에서 전체 성공률, 평균 스텝, wall-hit, stuck-rate 정리 보고서용 핵심 지표 산출 
+
+Library_env_test_advanced_image.py : 고정 시드로 Sample Path(로봇 이동 경로)를 시각화하여 PNG로 출력하는 파일
 
 **학습 전략(Learning Strategy)**
 
