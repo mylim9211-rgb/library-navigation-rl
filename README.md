@@ -1,6 +1,7 @@
 📚 Reinforcement Learning for Library Bookshelf Navigation
 Simple → Curriculum → Advanced 단계별 난이도 확장 기반 탐색 정책 학습
-📌 Overview
+
+**Overview**
 
 본 프로젝트는 도서관 서가 환경에서 로봇이 목표 위치(A~G)를 스스로 탐색하는 능력을 강화학습(Deep Q-Network, Double/Dueling DQN) 기반으로 학습·평가하는 연구 프로젝트입니다.
 
@@ -8,7 +9,7 @@ Simple → Curriculum → Advanced 단계별 난이도 확장 기반 탐색 정�
 Simple → Curriculum → Advanced
 순으로 확장하며, 정책의 일반화 성능, 안정성, seed 의존성, 타깃별 성공률 등을 체계적으로 분석하였습니다.
 
-🏗 프로젝트 구조(Project Structure)
+**프로젝트 구조(Project Structure)**
 library-navigation-rl/
 │
 ├── ★Library_Simple/         # Simple grid 환경 + 학습/테스트 코드
@@ -31,32 +32,14 @@ test_*.py : 평가 코드
 
 *_visual.py : 시각화 / 경로 출력
 
-🔧 기술 스택(Tech Stack)
+**학습 전략(Learning Strategy)**
 
-Python 3.x
-
-PyTorch
-
-NumPy
-
-Matplotlib
-
-Deep Q-Network (DQN)
-
-Double DQN
-
-Dueling Network Architecture
-
-Replay Buffer (Off-policy Learning)
-
-ε-greedy Exploration
-
-🧠 학습 전략(Learning Strategy)
 1) Simple → Curriculum → Advanced 단계적 확장
 단계	특징
 Simple	구조 단순 / 충돌 규칙 최소화 / 기본 이동 패턴 학습
 Curriculum	장애물 + Random Start 비율 조절로 일반화 강화
 Advanced	복잡한 서가(A~G) + 벽/벤치 + 실제 환경과 유사한 난이도
+
 2) Curriculum Learning 기법 적용
 
 학습 초반: Random Start 100%
@@ -76,7 +59,7 @@ Advanced	복잡한 서가(A~G) + 벽/벤치 + 실제 환경과 유사한 난이�
 
 지름길 탐색 유도 + 불필요한 충돌 억제
 
-🏃‍♂️ 실행 방법 (How to Run)
+**실행 방법 (How to Run)**
 1) 환경 설치
 pip install -r requirements.txt
 
@@ -92,7 +75,7 @@ python ★Library_Advanced/train_advanced.py
 5) 평가 코드 실행
 python ★Library_Advanced/advanced_eval.py
 
-📊 주요 결과(Results)
+**주요 결과(Results)**
 Seed 고정 vs Random 비교
 
 S-start 성공률: 약 83~88%
@@ -118,14 +101,15 @@ G	46%
 
 → G 서가는 실제로도 구조적으로 난이도가 높음 → 연구적으로도 흥미로운 포인트.
 
-📸 Sample Path Visualization
+Sample Path Visualization
 
-(이미지 파일 있다면 넣기👇)
+<img width="899" height="349" alt="image" src="https://github.com/user-attachments/assets/56a8e1e9-74c8-4d97-b192-507b209afb34" />
+
 
 results/
 └── sample_path.png
 
-🧪 실험 재현성 (Reproducibility)
+**실험 재현성 (Reproducibility)**
 
 동일 seed 설정 가능
 
@@ -133,7 +117,7 @@ Advanced 환경은 seed 10개 기반 CI 계산 코드 포함
 
 모든 학습/평가 스크립트 재현 가능하게 정리됨
 
-📝 향후 개선 방향(Future Work)
+**향후 개선 방향(Future Work)**
 
 Multi-agent 탐색
 
@@ -143,7 +127,6 @@ Actor-Critic 계열(PPO, A3C)로 성능 비교
 
 LLM 기반 reward shaping 적용 가능성 탐색
 
-✨ 만든이
+만든이
 
-임재윤 (Sogang Univ. AI SW 대학원)
-Reinforcement Learning + Library Data Engineering Enthusiast 😎
+A71051 임재윤 (서강대학교 AI SW 대학원)
