@@ -240,7 +240,7 @@ def main():
     res_R = evaluate_policy(env, policy, num_episodes=200, random_start=True)
 
     # 3. 그래프 저장
-    make_graphs(res_S, res_R, env, save_dir="robust_results")
+    make_graphs(res_S, res_R, env, save_dir="../★★Library_curriculum/robust_results")
 
     # 4. 샘플 경로 저장 (랜덤 1개)
     #    (보고서에 "이런 식으로 찾았다" 보여주기용)
@@ -254,7 +254,8 @@ def main():
         state, _, done, _ = env.step(a)
         traj.append(env.pos)
 
-    visualize_episode_path(env, traj, "Sample Path (Random Start)", "robust_results/sample_path.png")
+    visualize_episode_path(env, traj, "Sample Path (Random Start)",
+                           "../★★Library_curriculum/robust_results/sample_path.png")
 
     print("\n✅ 모든 통계 및 그래프 저장 완료: robust_results 폴더 확인!")
 
