@@ -1,4 +1,4 @@
-<img width="989" height="433" alt="image" src="https://github.com/user-attachments/assets/90b7ef4d-0873-4433-b71e-0c1252f65328" /># 📚 Reinforcement Learning for Library Bookshelf Navigation  
+
 ### *Simple → Curriculum → Advanced 단계별 난이도 확장 기반 강화학습 탐색 프로젝트*
 
 본 프로젝트는 **도서관 서가(Grid) 환경에서 로봇이 목표 위치(A~G)를 탐색하는 정책을   
